@@ -269,7 +269,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-   //metoda da li je neki web element prisutan nas stranici
+   //metoda da li je neki WebElement prisutan nas stranici
     public boolean isElementPresent (WebElement element){
         print("isElementPresent");
         try {
