@@ -1,5 +1,6 @@
 package Tests;
 
+import Pages.Strings;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,7 +24,7 @@ public class BaseTest {
         options.addArguments(new String[]{"--incognito"});
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         ChromeDriver driver = new ChromeDriver(options);
-        driver.get("https://www.knjizare-vulkan.rs/");
+        driver.get(Strings.HOME_PAGE_URL);
         return driver;
 
     }
@@ -40,16 +41,5 @@ public class BaseTest {
         boolean b = currentURL.equals(expectedURL);
         return b;
     }
-
-//    public boolean verifySearchItemIsShown(String search, WebDriver driver) {
-//        List<WebElement> searchItems = driver.findElements(By.xpath("//div[@class = 'item sel-filter']"));
-//        ArrayList<String> searchItemText = new ArrayList<>();
-//        for(WebElement item :  searchItems) {
-//            String text = item.getText();
-//            searchItemText.add(text);
-//        }
-//        return searchItemText.contains(search);
-//    }
-
 
 }
