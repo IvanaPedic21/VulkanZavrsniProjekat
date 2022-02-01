@@ -49,8 +49,8 @@ public class ShoppingTest extends BaseTest{
             shoppingPage.clickButtonAddToCart();
             shoppingPage.sleep();
             print ("5.Verify shopping cart is number 1." );
-            String brojArtikalaUKorpi = shoppingPage.getNumberCartIcon();
-            assert brojArtikalaUKorpi.equals("1"): "ERROR. Number cart is not 1.";
+            String numberItemInShopingCart = shoppingPage.getNumberOfItemInCartFromBadge();
+            assert numberItemInShopingCart.equals("1"): "ERROR. Number cart is not 1.";
             shoppingPage.clickPopUp();
             shoppingPage.clickMojaKorpa();
             shoppingPage.sleep();
@@ -59,7 +59,7 @@ public class ShoppingTest extends BaseTest{
             shoppingPage.listItemInShoppingCart();
             print("7.In modal login, login with existing user. ");
             shoppingPage.clickPrijavaModalForShopping();
-            shoppingPage.prijavaKorisnikaSopping();
+            shoppingPage.prijavaKorisnikaShopping();
             print("8.Verify button Potvrdi shopping is present");
             shoppingPage.buttonPotvrdiKupovinuIsPresent();
 

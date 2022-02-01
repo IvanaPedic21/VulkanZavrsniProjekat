@@ -26,7 +26,7 @@ public class SearchPage extends BasePage {
     public SearchPage() {
     }
 
-    //metoda
+    //metode nad WebElemntima
     public void clickOnBook(String itemName){
         assert isElementPresent(searchResultsList): "ERROR.Search result list not on page";
         List<WebElement> elements = driver.findElements(By.xpath(Strings.XPATH_CAROBNE_PRICE));

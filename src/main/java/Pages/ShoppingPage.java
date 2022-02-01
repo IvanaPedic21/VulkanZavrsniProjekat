@@ -13,6 +13,7 @@ import java.util.List;
 public class ShoppingPage extends BasePage {
     WebDriver driver = null;
 
+    //Web Elementi
     @FindBy(xpath = "//button[@id='nb_addToCartButton']")
     WebElement buttonAddtoCart;
 
@@ -32,16 +33,16 @@ public class ShoppingPage extends BasePage {
     WebElement prijavaForShopping;
 
     @FindBy (id="login_email")
-    WebElement userEmailTextFieldInShopping;
+    WebElement userEmailTextFieldForShopping;
 
     @FindBy (id="login_password")
-    WebElement userPasswordTextFieldInShopping;
+    WebElement userPasswordTextFieldForShopping;
 
     @FindBy (xpath = "//button[@class ='btn btn-success btn-login confirm-loader']")
     WebElement prijavaButtonForShopping;
 
     @FindBy (xpath = "//button[@id='submit_order_one_page']")
-    WebElement potvrdiKupovinuButton;
+    WebElement potvrdiShoppingButton;
 
 
     //konstruktor
@@ -50,7 +51,7 @@ public class ShoppingPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    //metode
+    //metode nad WebElemntima
     public void clickButtonAddToCart() {
         assert isElementPresent(buttonAddtoCart) : "ERROR. Add to cart button is not displayed.";
         buttonAddtoCart.click();
@@ -66,18 +67,17 @@ public class ShoppingPage extends BasePage {
         mojaKorpa.click();
     }
 
-    public String getNumberCartIcon() {
-        print("getBrojNaIkoniciKorpa");
+    public String getNumberOfItemInCartFromBadge() {
+        print("get number of item in cart from badge");
         return numberCartIcon.getText();
     }
 
     public void listItemInShoppingCart() {
-        List<WebElement> rowsList = cartTable.findElements(By.tagName("tr"));
+        List<WebElement> rowsList = cartTable.findElements(By.tagName("tr class"));
         List<WebElement> columnsList = null;
         for (WebElement row : rowsList) {
             System.out.println();
             columnsList = row.findElements(By.className("cart-product"));
-            // columnsList = row.findElements(By.tagName("td"));
             for (WebElement column : columnsList) {
                 print(column.getText() + ",");
                 print("***************************************");
@@ -85,7 +85,8 @@ public class ShoppingPage extends BasePage {
             }
         }
     }
-        public void clickPrijavaModalForShopping () {
+
+    public void clickPrijavaModalForShopping () {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].scrollIntoView();", prijavaForShopping);
             assert isElementPresent(prijavaForShopping) : "ERROR. Login,in shopping cart is not possible.";
@@ -94,18 +95,18 @@ public class ShoppingPage extends BasePage {
             sleep();
         }
 
-        public void enterUserEmailTextFieldInShopping(String text){
-            print("Entering text" + text +  "is user Email field");
-            assert isElementPresent (userEmailTextFieldInShopping):"ERROR. Login Modal is not open.";
-            userEmailTextFieldInShopping.click();
-            userEmailTextFieldInShopping.sendKeys(Strings.VALID_EMAIL);
+    public void enterUserEmailTextFieldInShopping(String text){
+        print("Entering text" + text +  "is user Email field");
+            assert isElementPresent (userEmailTextFieldForShopping):"ERROR. Login Modal is not open.";
+            userEmailTextFieldForShopping.click();
+            userEmailTextFieldForShopping.sendKeys(Strings.VALID_EMAIL);
         }
-
+        
     public void enterPasswordTextFieldInShopping(String text){
         print("Entering text" + text +  "is Password field");
-        assert isElementPresent (userPasswordTextFieldInShopping):"ERROR. Login Modal is not open.";
-        userPasswordTextFieldInShopping.click();
-        userPasswordTextFieldInShopping.sendKeys(Strings.VALID_LOZINKA);
+        assert isElementPresent (userPasswordTextFieldForShopping):"ERROR. Login Modal is not open.";
+        userPasswordTextFieldForShopping.click();
+        userPasswordTextFieldForShopping.sendKeys(Strings.VALID_LOZINKA);
     }
 
     public void clickPrijavaButtonForShopping(){
@@ -114,7 +115,7 @@ public class ShoppingPage extends BasePage {
         prijavaButtonForShopping.click();
     }
 
-    public void prijavaKorisnikaSopping(){
+    public void prijavaKorisnikaShopping(){
         this.enterUserEmailTextFieldInShopping(Strings.VALID_EMAIL);
         this.enterPasswordTextFieldInShopping(Strings.VALID_LOZINKA);
         this.clickPrijavaButtonForShopping();
@@ -123,9 +124,8 @@ public class ShoppingPage extends BasePage {
 
     public void buttonPotvrdiKupovinuIsPresent() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView();", potvrdiKupovinuButton);
-
-        assert isElementPresent(potvrdiKupovinuButton) : "ERROR. Button 'Potvrdi' shopping is not displayed in page.";
+        js.executeScript("arguments[0].scrollIntoView();", potvrdiShoppingButton);
+        assert isElementPresent(potvrdiShoppingButton) : "ERROR. Button 'Potvrdi' shopping is not displayed in page.";
     }
 
     }

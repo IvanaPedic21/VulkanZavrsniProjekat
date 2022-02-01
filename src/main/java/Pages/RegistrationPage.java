@@ -11,11 +11,9 @@ public class RegistrationPage extends BasePage{
 
     WebDriver driver = null;
 
-    //Web element modal Registruj se
+    //Web elementi modal Registruj se i u modalu
     @FindBy(xpath ="//form[@class='registration_form']")
     WebElement registracijaModal;
-
-    //Web elementi u modalu Registrujte se
 
 //    @FindBy(id="reg_type_person")
 //    WebElement tipKorisnika;
@@ -82,21 +80,19 @@ public class RegistrationPage extends BasePage{
     @FindBy(xpath = "//div[@class='modal-content']//form[@id='registration_modal']//button[@class='close']")
     WebElement closeDugme;
 
-    //konstruktor
 
+
+    //konstruktor
     public RegistrationPage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver,this);
     }
 
-    //metoda nad modalom Registracija
-
+    //metoda nad WebElementima
     public void clickPrijavaRegistrujteSe (){
         assert isElementPresent ( registracijaModal );
         registracijaModal.click();
     }
-
-    //metode nad Web elemntima
 
 //    public void enterTipKorisnika(){
 //        assert isElementPresent(tipKorisnika);
